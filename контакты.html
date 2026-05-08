@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>АэроБин — Контакты | Свяжитесь с нами</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            background-color: #020306;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        :root {
+            --accent: #38bdf8;
+        }
+
+        h1, h2, .section-title, .footer h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        p, li, .hero-sub, .section-subtitle, .card p, .footer p, .accent-tag {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        strong, b {
+            font-weight: 600;
+            font-family: 'Cabin', sans-serif;
+            color: #7dd3fc;
+        }
+
+        /* ---- КОСМИЧЕСКИЙ ФОН ---- */
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: #020306;
+        }
+        
+        .stars-field {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .light-beam {
+            position: absolute;
+            top: -20%;
+            left: -15%;
+            width: 70%;
+            height: 110%;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0.02) 50%, transparent 80%);
+            transform: rotate(25deg);
+            pointer-events: none;
+            z-index: 2;
+            filter: blur(45px);
+        }
+        
+        .ambient-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.04), transparent 70%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 20;
+            background: transparent;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== МЕНЮ ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 500;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .nav-links li {
+            margin: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1rem;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover {
+            color: #7dd3fc;
+        }
+        .nav-links a.active {
+            color: #7dd3fc;
+            border-bottom: 1px solid #7dd3fc;
+            padding-bottom: 4px;
+        }
+        .tech-badge {
+            background: rgba(56, 189, 248, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #7dd3fc;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            white-space: nowrap;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .tech-badge:hover {
+            background: rgba(56, 189, 248, 0.3);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            padding: 60px 0 60px;
+            background: transparent;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+        }
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 6;
+        }
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: clamp(36px, 6vw, 58px);
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #FFFFFF 30%, #bae6fd 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+            }
+        }
+
+        /* ===== КОНТАКТНАЯ ИНФОРМАЦИЯ ===== */
+        .contacts-section {
+            padding: 60px 0;
+        }
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .contact-card {
+            background: rgba(15, 25, 40, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 32px 28px;
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            transition: all 0.25s;
+            text-align: center;
+        }
+        .contact-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-4px);
+            background: rgba(25, 40, 60, 0.7);
+        }
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .contact-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        .contact-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .contact-card a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .contact-card a:hover {
+            color: #7dd3fc;
+        }
+
+        /* ===== КАРТА ===== */
+        .map-section {
+            padding: 0 0 60px;
+        }
+        .map-container {
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            height: 400px;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ===== РЕКВИЗИТЫ (обновлены) ===== */
+        .requisites-section {
+            padding: 60px 0;
+        }
+        .requisites-card {
+            background: rgba(15, 25, 40, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 32px;
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .requisites-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .requisites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .requisite-item {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+        }
+        .requisite-label {
+            font-weight: 600;
+            color: #7dd3fc;
+            min-width: 200px;
+        }
+        .requisite-value {
+            color: rgba(255, 255, 255, 0.8);
+            flex: 1;
+            text-align: right;
+        }
+
+        /* ===== ФОРМА ===== */
+        .form-section {
+            padding: 60px 0 80px;
+        }
+        .form-container {
+            background: rgba(15, 25, 40, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 48px;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .form-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .form-container p {
+            text-align: center;
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(5, 10, 18, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 16px;
+            font-family: 'Cabin', sans-serif;
+            font-size: 1rem;
+            color: white;
+            transition: all 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+            background: rgba(5, 10, 18, 0.8);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #38bdf8;
+        }
+        .checkbox-group label {
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+            cursor: pointer;
+        }
+        .checkbox-group a {
+            color: #7dd3fc;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: rgba(56, 189, 248, 0.2);
+            border: 1px solid #38bdf8;
+            border-radius: 40px;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .submit-btn:hover {
+            background: rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        /* ===== ПОДВАЛ ===== */
+        .footer {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 48px 0 32px;
+        }
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: 0.2s;
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.95rem;
+        }
+        .footer-nav a:hover {
+            color: #7dd3fc;
+        }
+        
+        @media (max-width: 900px) {
+            .contacts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-container {
+                padding: 32px 24px;
+            }
+            .requisite-item {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .requisite-value {
+                text-align: left;
+            }
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.2;
+            animation: softTwinkle infinite alternate;
+            animation-fill-mode: both;
+        }
+        @keyframes softTwinkle {
+            0% { opacity: 0.15; transform: scale(1); }
+            100% { opacity: 0.5; transform: scale(1.08); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="space-bg">
+    <div class="stars-field" id="starsField"></div>
+    <div class="light-beam"></div>
+    <div class="ambient-glow"></div>
+</div>
+
+<div class="content-wrapper">
+    <!-- Фиксированное меню -->
+   <div class="container">
+        <div class="navbar">
+             <a href="deepseek_ccb550.html" class="logo">
+                <span class="logo-text">АэроБин</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="софт.html">Софт</a></li>
+                <li><a href="роботы фин.html">Роботы</a></li>
+                <li><a href="о компании.html">О компании</a></li>
+                <li><a href="услуги.html">Услуги</a></li>
+                <li><a href="контакты.html" class="active">Контакты</a></li>
+            </ul>
+            <a href="техподдержка.html" class="tech-badge">Техподдержка</a>
+        </div>
+    </div>
+    
+    <div class="menu-spacer"></div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Свяжитесь с нами</h1>
+                <p>Мы всегда открыты для диалога. Задайте вопрос, предложите сотрудничество или оставьте заявку на консультацию — наши специалисты свяжутся с вами в ближайшее время.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Контактная информация -->
+    <div class="contacts-section">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Офис</h3>
+                    <p>125124, Россия, Москва<br>ул. 3-я Ямского поля, д.2, к. 11, офис 115</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-10 7L2 7"/>
+                        </svg>
+                    </div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@airbyn.ru">info@airbyn.ru</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                    </div>
+                    <h3>Телефон</h3>
+                    <p><a href="tel:+74951346262">+7 (495) 134-62-62</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Карта -->
+    <div class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <iframe 
+                    src="https://yandex.ru/map-widget/v1/?ll=37.594684,55.786111&z=18&pt=37.594683,55.786111,pm2rdm"
+                    allowfullscreen="true"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- РЕКВИЗИТЫ (обновлены) -->
+    <div class="requisites-section glass-section">
+        <div class="container">
+            <div class="requisites-card">
+                <h3>Реквизиты компании</h3>
+                <div class="requisites-list">
+                    <div class="requisite-item">
+                        <span class="requisite-label">Полное наименование</span>
+                        <span class="requisite-value">Акционерное общество «АэроБин»</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">Сокращенное наименование</span>
+                        <span class="requisite-value">АО «АэроБин»</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">ИНН</span>
+                        <span class="requisite-value">9703237240</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">КПП</span>
+                        <span class="requisite-value">770301001</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">ОГРН</span>
+                        <span class="requisite-value">1267700028397</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">Генеральный директор</span>
+                        <span class="requisite-value">Желудков Андрей Владимирович</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">Наименование банка</span>
+                        <span class="requisite-value">ПАО «СберБанк»</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">БИК</span>
+                        <span class="requisite-value">044525225</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">Расчетный счет</span>
+                        <span class="requisite-value">40702810838720034758</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">Корреспондентский счет</span>
+                        <span class="requisite-value">30101810400000000225</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">Юридический адрес</span>
+                        <span class="requisite-value">123112, Россия, г. Москва, муниципальный округ Пресненский вн.тер.г., наб. Пресненская, д. 12, помещ. 8Н</span>
+                    </div>
+                    <div class="requisite-item">
+                        <span class="requisite-label">Фактический адрес</span>
+                        <span class="requisite-value">125124, Россия, г. Москва, муниципальный округ Беговой вн.тер.г., ул. 3-я Ямского поля, д.2, к. 11, офис 115</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+    <div class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Написать нам</h2>
+                <p>Заполните форму, и мы ответим в ближайшее время</p>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Телефон">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Ваше сообщение"></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">
+                            Я даю согласие на обработку персональных данных в соответствии с 
+                            <a href="#">Политикой обработки персональных данных</a> и 
+                            <a href="#">Публичной офертой</a>.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+   <footer class="footer">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+                <div>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 16px;">АэроБин</h3>
+                    <p>Интеллектуальная аэросистема измерений,<br>анализа и мониторинга</p>
+                    <p style="margin-top: 20px;">© 2026 АО «АэроБин»<br>Все права защищены</p>
+                </div>
+                <div>
+                    <h4 style="font-weight: 600; font-size: 1rem; margin-bottom: 20px; color: rgba(255,255,255,0.9);">Навигация</h4>
+                    <div class="footer-nav">
+                        <a href="софт.html">Софт</a>
+                        <a href="роботы фин.html">Роботы</a>
+                        <a href="о компании.html">О компании</a>
+                        <a href="услуги.html">Услуги</a>
+                        <a href="контакты.html">Контакты</a>
+                        <a href="техподдержка.html">Техподдержка</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-weight: 600; font-size: 1rem; margin-bottom: 20px; color: rgba(255,255,255,0.9);">Контакты</h4>
+                    <p>info@airbyn.ru</p>
+                    <p>+7 (495) 134-62-62</p>
+                    <p>Москва, ул. 3-я Ямского поля, 2к11</p>
+                </div>
+                <div>
+                    <h4 style="font-weight: 600; font-size: 1rem; margin-bottom: 20px; color: rgba(255,255,255,0.9);">Сервис</h4>
+                    <p>Техподдержка 24/7</p>
+                    <p>Обучение и ввод в эксплуатацию</p>
+                    <p>Гарантийное обслуживание</p>
+                </div>
+            </div>
+            <hr style="margin: 40px 0 24px;">
+            <p style="font-size: 0.8rem; text-align: center;">АэроБин — взгляд, который всегда на шаг впереди. Непрерывная цифровая история объектов и территорий.</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const starsField = document.getElementById('starsField');
+    const starCount = 280;
+    
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2.2 + 0.6;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        const duration = Math.random() * 4 + 2.5;
+        star.style.animationDuration = duration + 's';
+        star.style.animationDelay = Math.random() * 5 + 's';
+        starsField.appendChild(star);
+    }
+</script>
+</body>
+</html>
